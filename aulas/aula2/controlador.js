@@ -1,0 +1,59 @@
+const readline = require("readline-sync");
+
+const Produto = require('./modelo');
+
+const produtos = [];
+
+function listar(){
+    produtos.forEach(produto => console.log (produto.toString()));
+}
+
+function criar(){
+    const nome = readline.question('Entre com o nome do produto:');
+    const preco = readline.question('Entre com o preco do produto:');
+    const novo = new Produto(nome, preco);
+    produtos.push(novo);
+}
+
+function criar(){
+    const nome = readline.question('Entre com o nome do produto:');
+    const preco = readline.question('Entre com o preco do produto:');
+    const novo = new Produto (nome, preco);
+    produtos.push(novo);
+}
+
+function buscar(){
+    const nome = readline.question('Entre com o nome do produto: ')
+    const buscar = produtos.find(produto => produto.nome === nome);
+    if(buscar) {
+        console.log(buscar.nome,'-',buscar.preco);
+    }else{
+        console.log('Produto nao localizado')
+    
+    }
+}
+
+function atualizar(){
+    const nome = readline.question('Entre com o nome do produto: ')
+    const buscar = produtos.find(produto => produto.nome === nome);
+    if(buscar) {
+        const preco = readline.question('Entre com o novo preco: ')
+        buscar.preco = preco;
+    }else{
+        console.log('Produto nao localizado');
+    
+    }
+}
+
+function remover(){
+    const nome = readline.question('Entre com o nome do produto: ');
+    const posicao = 
+    produtos.findIndex(produtos => produtos.nome === nome);
+    if (posicao>=0) {
+        produtos.splice(posicao,1);
+    }else{ 
+        console.log('Produto não localizado');
+    }
+}
+
+module.exports = {criar, listar, buscar, atualizar, remover};
